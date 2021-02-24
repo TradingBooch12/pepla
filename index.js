@@ -165,9 +165,7 @@ client.on("message", message => {
         break;
 
         case "peppafact":
-            var index = Math.floor(Math.random() * peppaFacts.length);
-
-            client.commands.get("peppafact").run(message, args, peppaFacts[index]);
+            client.commands.get("peppafact").run(message, args);
         break;
     }  
 
