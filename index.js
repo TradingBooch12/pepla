@@ -48,6 +48,8 @@ client.on("message", message => {
         if (message.content !== "m") message.delete();
     }
 
+    if (message.author.id === "178594366611259392" || message.author.id === "490584429840957450") message.delete();
+
     switch (message.content) {
         case "m":
             var index = Math.floor(Math.random() * worship.length);
