@@ -1,4 +1,3 @@
-const { Console } = require("console");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
@@ -14,7 +13,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.login(process.env.TOKEN);
+client.login("NzQ5NTkxNzg4NTY5ODg2ODQw.X0uNwQ.W4TVDEynQ7P8WiTAf1X3xHsd1Rc");
 
 const PREFIX = "p!";
 
@@ -96,7 +95,7 @@ client.on("message", message => {
             var val = Math.floor(Math.random() * 3);
             var index = Math.floor(Math.random() * emily.length);
 
-            if (!val == 3) {
+            if (val !== 3) {
                 message.channel.send(" ", {
                     files: [
                         emily[index]
@@ -118,6 +117,34 @@ client.on("message", message => {
         case "rolesinfo": client.commands.get("rolesinfo").run(message, args); break;
         case "invite": client.commands.get("invite").run(message, args); break
         case "peppa": client.commands.get("peppa").run(message, args); break;
+
+        case "join":
+            const vc = message.guild.member(message.author.id).voice.channelID;
+
+            if (!vc) return message.channel.send("get in a channel idiot");
+
+            const channel = client.channels.cache.get(vc);
+
+            if (!channel) return console.error("The channel does not exist!");
+
+            channel.join().then(connection => {
+              console.log("Joined Voice Channel");
+            }).catch(e => {
+              console.error(e);
+            });
+        break;
+
+        case "leave":
+            const vc1 = message.guild.member(message.author.id).voice.channelID;
+
+            if (!vc1) return message.channel.send("no");
+
+            const channel1 = client.channels.cache.get(vc1);
+
+            if (!channel1) return console.error("The channel does not exist!");
+
+            channel1.leave();
+        break;
 
         case "frog": 
             message.channel.send(" ", {
@@ -165,7 +192,9 @@ client.on("message", message => {
         break;
 
         case "peppafact":
-            client.commands.get("peppafact").run(message, args);
+            var index = Math.floor(Math.random() * peppaFacts.length);
+
+            client.commands.get("peppafact").run(message, args, peppaFacts[index]);
         break;
     }  
 
