@@ -13,7 +13,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.login("NzQ5NTkxNzg4NTY5ODg2ODQw.X0uNwQ.W4TVDEynQ7P8WiTAf1X3xHsd1Rc");
+client.login(process.env.TOKEN);
 
 const PREFIX = "p!";
 
