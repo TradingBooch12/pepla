@@ -13,7 +13,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.login(process.env.TOKEN);
+client.login("NzQ5NTkxNzg4NTY5ODg2ODQw.X0uNwQ.X9ylCpKrj2A0AwR18EisCyl7X3k");
 
 const PREFIX = "p!";
 
@@ -117,6 +117,7 @@ client.on("message", message => {
         case "rolesinfo": client.commands.get("rolesinfo").run(message, args); break;
         case "invite": client.commands.get("invite").run(message, args); break
         case "peppa": client.commands.get("peppa").run(message, args); break;
+        case "ping": client.commands.get("ping").run(message, args, client, message.createdTimestamp); break;
 
         case "join":
             const vc = message.guild.member(message.author.id).voice.channelID;
